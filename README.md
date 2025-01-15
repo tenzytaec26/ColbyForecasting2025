@@ -10,7 +10,7 @@ phone: 207-315-2567 x316
 
 Meeting times: MWF 1:00-4:00 pm
 
-Virtual (zoom) office hours: TTh 10:00-12:00 AM
+[Virtual (zoom) office hours](https://www.google.com/url?q=https://bigelow.zoom.us/j/2073152562&sa=D&source=calendar&ust=1737386182564783&usg=AOvVaw0zzwTV8NGZ72tuSEWzX7Ko): TTh 10:00-12:00 AM
 
 Location: Miller 205
 
