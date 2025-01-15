@@ -1,4 +1,4 @@
-Presentation
+##Presentation
 
 Monday, January 27
 
@@ -6,13 +6,13 @@ We will have a mini scientific conference where you will present your project as
 
 Proposed content for a presentation:
 
-Introduction - What is your species? Why is it important? What are some of the management, industry, or conservation decisions that could benefit from a forecast?
+**Introduction** - What is your species? Why is it important? What are some of the management, industry, or conservation decisions that could benefit from a forecast?
 
-Data - What is the distribution in time and space of your data? What are the strengths, weaknesses, caveats?
+**Data** - What is the distribution in time and space of your data? What are the strengths, weaknesses, caveats?
 
-Modeling - Go through your approach and results, including a projection to future climate conditions. It’s okay to include challenges you’re facing or unanswered questions. These can inform our discussion.
+**Modeling** - Go through your approach and results, including a projection to future climate conditions. It’s okay to include challenges you’re facing or unanswered questions. These can inform our discussion.
 
-Implications - How does your prediction influence the decisions around this species that you discussed in the introduction? 
+**Implications** - How does your prediction influence the decisions around this species that you discussed in the introduction? 
 
 Your project write-up will follow a similar structure.
 
