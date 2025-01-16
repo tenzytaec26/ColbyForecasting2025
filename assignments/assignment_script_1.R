@@ -32,6 +32,7 @@ long_values = long_values |>
   # mutate into a factor with ordered levels. 
   mutate(month = parse_factor(month, levels = month.abb))
 
+# Creating plot 
 ggplot(data = long_values, aes(x = month, y = value)) + geom_point() + 
   labs(y = "SST(C)", 
        title = "RCP4.5 2055 SST at buoy M01")
