@@ -30,7 +30,7 @@ covars = read_brickman(db)
 # we want to compare two variables, we could do it with the
 # long form, but the wide form might be better
 x = extract_brickman(covars, buoys, form = "wide")
-
+x
 # add a column (called mutating which sounds vaguely gross) to the table
 # the new colum is dT = SST - Tbtm
 x = x |> 
@@ -60,3 +60,4 @@ ggplot(data = x,
 
 # bonus... save the image
 ggsave("images/N01_dT.png")
+
