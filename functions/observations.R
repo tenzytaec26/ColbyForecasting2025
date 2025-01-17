@@ -1,4 +1,3 @@
-
 read_observations = function(scientificname = "Mola mola",
                              minimum_year = 1970, 
                              ...){
@@ -8,19 +7,42 @@ read_observations = function(scientificname = "Mola mola",
   #' @param scientificname chr, the name of the species to read
   #' @param minimum_year num, the earliest year of observation to accept or 
   #'   set to NULL to skip
-  #' @param ... other arguments passed to `read_obis()`
   #' @return a filtered table of observations
   
   # Happy coding!
   
   # read in the raw data
-  x = read_obis(scientificname, ...)
+  obs = read_obis(scientificname, ...)
   
-  # if the user provided a non-NULL filter by year
+  # Print initial summary
+  print("Raw data preview:")
+  print(summary(obs))
+  
+  dim_start = dim(obs)
+  
+  print("Initial count of basisOfRecord:")
+  print(obs |> count(basisOfRecord))
+  
+  # Remove rows where eventDate is missing
+  obs = obs |> filter(!is.na(eventDate))
+  
+  # Debugging: Show an example row with missing individualCount before filtering
+  missing_individual_count = obs |> filter(is.na(individualCount)) |> slice(1)
+  
+  # Remove rows where individualCount is missing
+  obs = obs |> filter(!is.na(individualCount))
+ 
+  # Apply filtering by year if minimum_year is provided
   if (!is.null(minimum_year)){
-    x = x |>
+    obs = obs |> 
       filter(year >= minimum_year)
   }
   
-  return(x)
+  # Final summary
+  print("Final summary of observations:")
+  print(summary(obs))
+  
+  return(obs)
 }
+
+
