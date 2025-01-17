@@ -306,16 +306,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">method =</span> <span class="fu">c</span>(<span class="st">"dist_max"</span>, <span class="dv">30000</span>),</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">return_pres =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in sample_background(obs, mask, n = 2 * nrow(obs), class_label = "background", : There are fewer available cells for raster 'NA' (2459 presences) than the requested 4918 background points. Only 4818 will be returned.</code></pre>
+<pre><code>Warning in sample_background(obs, mask, n = 2 * nrow(obs), class_label = "background", : There are fewer available cells for raster 'NA' (2454 presences) than the requested 4908 background points. Only 4797 will be returned.</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>greedy_input</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 7277 features and 1 field
+<pre><code>Simple feature collection with 7251 features and 1 field
 Geometry type: POINT
 Dimension:     XY
 Bounding box:  xmin: -74.89169 ymin: 38.805 xmax: -65.02004 ymax: 45.21401
 Geodetic CRS:  WGS 84
-# A tibble: 7,277 × 2
+# A tibble: 7,251 × 2
    class                geometry
  * &lt;fct&gt;             &lt;POINT [°]&gt;
  1 presence    (-72.8074 39.056)
@@ -328,7 +328,7 @@ Geodetic CRS:  WGS 84
  8 presence      (-65.78 43.195)
  9 presence       (-70.5 42.767)
 10 presence   (-72.3024 40.1862)
-# ℹ 7,267 more rows</code></pre>
+# ℹ 7,241 more rows</code></pre>
 </div>
 </div>
 <p>You may encounter a warning message that says, “There are fewer available cells for raster…”. This is useful information, there simply weren’t a lot of non-NA cells to sample from. Let’s plot this.</p>
@@ -360,8 +360,8 @@ Geodetic CRS:  WGS 84
 # A tibble: 2 × 3
   class          n                                                      geometry
 * &lt;fct&gt;      &lt;int&gt;                                              &lt;MULTIPOINT [°]&gt;
-1 presence    2459 ((-65.07 42.68), (-65.067 42.65), (-65.05 42.583), (-65.05 4…
-2 background  4818 ((-65.02004 42.25251), (-65.02004 42.74609), (-65.1023 42.66…</code></pre>
+1 presence    2454 ((-65.07 42.68), (-65.067 42.65), (-65.05 42.583), (-65.05 4…
+2 background  4797 ((-65.02004 42.25251), (-65.02004 42.74609), (-65.1023 42.66…</code></pre>
 </div>
 </div>
 <p>Well, that’s imbalanced with a different number presences than background points. But, on the bright side, the background points are definitely in the region of observations.</p>
@@ -377,13 +377,13 @@ Geodetic CRS:  WGS 84
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dim_before <span class="ot">=</span> <span class="fu">dim</span>(obs)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"number of rows before cell thinning:"</span>, dim_before[<span class="dv">1</span>], <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>number of rows before cell thinning: 2459 </code></pre>
+<pre><code>number of rows before cell thinning: 2454 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>thinned_obs <span class="ot">=</span> <span class="fu">thin_by_cell</span>(obs, mask)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dim_after <span class="ot">=</span> <span class="fu">dim</span>(thinned_obs)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"number of rows after cell thinning:"</span>, dim_after[<span class="dv">1</span>], <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>number of rows after cell thinning: 1204 </code></pre>
+<pre><code>number of rows after cell thinning: 1201 </code></pre>
 </div>
 </div>
 <p>So, that dropped quite a few!</p>
@@ -411,7 +411,7 @@ Geodetic CRS:  WGS 84
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">method =</span> <span class="st">"bias"</span>,</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">return_pres =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in sample_background(thinned_obs, samp_weight, n = 2 * nrow(obs), : There are fewer available cells for raster 'NA' (1204 presences) than the requested 4918 background points. Only 1204 will be returned.</code></pre>
+<pre><code>Warning in sample_background(thinned_obs, samp_weight, n = 2 * nrow(obs), : There are fewer available cells for raster 'NA' (1201 presences) than the requested 4908 background points. Only 1201 will be returned.</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(conservative_input, class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -423,8 +423,8 @@ Geodetic CRS:  WGS 84
 # A tibble: 2 × 3
   class          n                                                      geometry
 * &lt;fct&gt;      &lt;int&gt;                                              &lt;MULTIPOINT [°]&gt;
-1 presence    1204 ((-65.067 42.65), (-65.05 42.6), (-65.067 42.617), (-65.16 4…
-2 background  1204 ((-65.1023 42.66383), (-65.02004 42.58157), (-65.1023 42.581…</code></pre>
+1 presence    1201 ((-65.067 42.65), (-65.05 42.583), (-65.067 42.617), (-65.19…
+2 background  1201 ((-65.1023 42.66383), (-65.02004 42.58157), (-65.1023 42.581…</code></pre>
 </div>
 </div>
 <p>Whoa - that’s many fewer background points.</p>
@@ -588,25 +588,25 @@ Note
 <pre><code>Warning in sample_background(thinned_obs, samp_weight, n = 2 * nrow(obs), : There are fewer available cells for raster 'NA' (996 presences) than the requested 4650 background points. Only 996 will be returned.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in sample_background(thinned_obs, samp_weight, n = 2 * nrow(obs), : There are fewer available cells for raster 'NA' (968 presences) than the requested 4168 background points. Only 968 will be returned.</code></pre>
+<pre><code>Warning in sample_background(thinned_obs, samp_weight, n = 2 * nrow(obs), : There are fewer available cells for raster 'NA' (965 presences) than the requested 3868 background points. Only 965 will be returned.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in sample_background(obs, raster, n = 2 * nrow(obs), class_label = "background", : There are fewer available cells for raster 'NA' (2459 presences) than the requested 4918 background points. Only 4818 will be returned.</code></pre>
+<pre><code>Warning in sample_background(obs, raster, n = 2 * nrow(obs), class_label = "background", : There are fewer available cells for raster 'NA' (2454 presences) than the requested 4908 background points. Only 4797 will be returned.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in sample_background(thinned_obs, samp_weight, n = 2 * nrow(obs), : There are fewer available cells for raster 'NA' (1204 presences) than the requested 4918 background points. Only 1204 will be returned.</code></pre>
+<pre><code>Warning in sample_background(thinned_obs, samp_weight, n = 2 * nrow(obs), : There are fewer available cells for raster 'NA' (1201 presences) than the requested 4908 background points. Only 1201 will be returned.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in sample_background(thinned_obs, samp_weight, n = 2 * nrow(obs), : There are fewer available cells for raster 'NA' (541 presences) than the requested 1844 background points. Only 542 will be returned.</code></pre>
+<pre><code>Warning in sample_background(thinned_obs, samp_weight, n = 2 * nrow(obs), : There are fewer available cells for raster 'NA' (540 presences) than the requested 1828 background points. Only 541 will be returned.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in sample_background(thinned_obs, samp_weight, n = 2 * nrow(obs), : There are fewer available cells for raster 'NA' (311 presences) than the requested 832 background points. Only 312 will be returned.</code></pre>
+<pre><code>Warning in sample_background(thinned_obs, samp_weight, n = 2 * nrow(obs), : There are fewer available cells for raster 'NA' (305 presences) than the requested 736 background points. Only 306 will be returned.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in sample_background(thinned_obs, samp_weight, n = 2 * nrow(obs), : There are fewer available cells for raster 'NA' (210 presences) than the requested 676 background points. Only 210 will be returned.</code></pre>
+<pre><code>Warning in sample_background(thinned_obs, samp_weight, n = 2 * nrow(obs), : There are fewer available cells for raster 'NA' (207 presences) than the requested 550 background points. Only 207 will be returned.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in sample_background(thinned_obs, samp_weight, n = 2 * nrow(obs), : There are fewer available cells for raster 'NA' (20 presences) than the requested 112 background points. Only 20 will be returned.</code></pre>
+<pre><code>Warning in sample_background(thinned_obs, samp_weight, n = 2 * nrow(obs), : There are fewer available cells for raster 'NA' (15 presences) than the requested 30 background points. Only 15 will be returned.</code></pre>
 </div>
 </div>
 </section>
