@@ -8,20 +8,24 @@ read_model_input = function(scientificname = "Hemitripterus americanus",
                             mon = "Oct",
                             approach = "greedy",
                             path = data_path("model_input")){
-  
+  species = scientificname
   # your part goes in here
   if(approach == "greedy"){
-    x = sprintf("%s-%s-greedy_input.gpkg", 
+    filename = sprintf("%s-%s-greedy_input.gpkg", 
             gsub(" ", "_", species),
             mon)
   }
   
-  if(appraoch == "conservative"){
-    x = sprintf("%s-%s-conservative_input.gpkg", 
+  if(approach == "conservative"){
+    filename = sprintf("%s-%s-conservative_input.gpkg", 
                    gsub(" ", "_", species),
                    mon)
   }
-  
+  path = data_path("model_input")
+  full_path = file.path(path,filename)
+  #print(path)
+  #print(filename)
+  x = read_sf(full_path)
   return(x)
   
 }
