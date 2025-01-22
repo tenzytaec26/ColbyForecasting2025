@@ -1,4 +1,4 @@
-read_observations = function(scientificname = "Hemitripterus americanus",
+read_observations = function(scientificname = "Cetorhinus maximus",
                              minimum_year = 1970, 
                              ...){
   
@@ -33,12 +33,22 @@ read_observations = function(scientificname = "Hemitripterus americanus",
   # Remove rows where individualCount is missing
   obs = obs |> 
     filter(!is.na(individualCount))
+  
+  obs = obs |>
+    filter(!is.na(year))
+  
+  obs = obs |> 
+    filter(!is.na(month))
  
   # Apply filtering by year if minimum_year is provided
   if (!is.null(minimum_year)){
     obs = obs |> 
       filter(year >= minimum_year)
   }
+  
+  obs = obs |> 
+    filter(!(basisOfRecord %in% c("Preserved Specimen", "Nomenclature Specimen")))
+  
   
   # Final summary
   #print("Final summary of observations:")

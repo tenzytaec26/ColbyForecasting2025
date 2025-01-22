@@ -4,8 +4,8 @@
 #' @param mon chr month abbreviation
 #' @param approach chr, one of "greedy" or "conservative"
 #' @param path chr the path to the data directory
-read_model_input = function(scientificname = "Hemitripterus americanus",
-                            mon = "Oct",
+read_model_input = function(scientificname = "Cetorhinus maximus",
+                            mon = "Jun",
                             approach = "greedy",
                             path = data_path("model_input")){
   species = scientificname
