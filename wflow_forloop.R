@@ -70,10 +70,9 @@ for (m in months){
       add_model(model)
     
     fitted_wflow = fit(wflow, data = tr_data)
-    #print(cfg$version)
+    # print(cfg$version)
     write_workflow(fitted_wflow, version = cfg$version)
   
   }
-  
   
 }

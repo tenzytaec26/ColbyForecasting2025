@@ -43,7 +43,7 @@ Let's load what we need to build a model for August using the greedy sampling te
 model_input = read_model_input(scientificname = "Cetorhinus maximus", 
                                approach = "greedy", 
                                mon = "Jun")
-cfg = read_configuration(version = "g_Aug")
+cfg = read_configuration(version = "g_Jun")
 db = brickman_database()
 covars = read_brickman(db |> filter(scenario == "PRESENT", interval == "mon"))|>
   select(all_of(cfg$keep_vars))
