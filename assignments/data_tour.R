@@ -2,14 +2,21 @@ source("setup.R")
 db = brickman_database()
 species = "Cetorhinus maximus"
 basking= fetch_obis(scientificname = species)
+filtered_basking = read_observations()
 
+filtered_basking = filtered_basking |>
+  mutate(month = factor(month, levels = month.abb))
 
-# getting a summary of obs
+# Plot the monthly observations with properly ordered months
 ggplot(data = filtered_basking,                                
        mapping = aes(x = month)) +                 
   geom_bar() +                                    
-  labs(title = "Monthly Basking Sharks Observations")  
+  labs(title = "Monthly Basking Sharks Observations",
+       x = "Month",
+       y = "Number of Observations") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate month labels for clarity
 
+# Save the plot
 ggsave("images/monthly_basking.png")
 
 ggplot(data = filtered_basking, mapping = aes(x = year)) + geom_bar() + 

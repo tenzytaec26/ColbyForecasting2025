@@ -15,14 +15,14 @@ buoy_m01 = buoys |> filter(id == "M01")
 ##text(st_geometry(buoys), labels = buoys$id, cex = 0.7, adj = c(1,-0.1))
 
 db = db |>
-  filter(scenario == "RCP45", interval == "mon", year == "2055") # note the double '==', it's comparative
+  filter(scenario == "RCP85", interval == "mon", year == "2055") # note the double '==', it's comparative
 db
 current = read_brickman(db)
 current
 
 #plot(current['SST'])
 
-current_sst = current['SST']
+current_sst = current['SSS']
 current_sst
 
 # Extracting point data from Brickman object, x=current_sst, y=buoy, and also has form
@@ -34,6 +34,6 @@ long_values = long_values |>
 
 # Creating plot 
 ggplot(data = long_values, aes(x = month, y = value)) + geom_point() + 
-  labs(y = "SST(C)", 
-       title = "RCP4.5 2055 SST at buoy M01")
+  labs(y = "SSS(C)", 
+       title = "RCP8.5 2055 SST at buoy M01")
 

@@ -20,7 +20,7 @@ We also will need the Brickman mask and the observation data. Note that we are m
 ```{r load_obs_mask}
 coast = read_coastline()
 obs = read_observations(scientificname = "Cetorhinus maximus") |>
-  filter(month == "Jun")
+  filter(month == "Aug")
 db = brickman_database() |>
   filter(scenario == "STATIC", var == "mask")
 mask = read_brickman(db, add_depth = FALSE)
@@ -53,7 +53,7 @@ plot(greedy_input['class'],
      axes = TRUE,  
      pch = ".", 
      extent = mask, 
-     main = "July greedy class distribution",
+     main = "May, June, and July greedy class distribution",
      reset = FALSE)
 plot(coast, col = "orange", add = TRUE)
 ```
@@ -89,7 +89,7 @@ There is a technique we can use to to make a weighted sampling map.  Simply coun
 
 ```{r sample_weight}
 samp_weight = rasterize_point_density(obs, mask)
-#plot(samp_weight, axes = TRUE, breaks = "equal", col = rev(hcl.colors(10)), reset = FALSE)
+plot(samp_weight, axes = TRUE, breaks = "equal", col = rev(hcl.colors(10)), reset = FALSE)
 plot(samp_weight, axes = TRUE, breaks = "equal", reset = FALSE)
 plot(coast, col = "orange", lwd = 2, add = TRUE)
 ```
@@ -111,7 +111,7 @@ plot(conservative_input['class'],
      axes = TRUE,  
      pch = ".", 
      extent = mask, 
-     main = "July conservative class distribution",
+     main = "May, June and July conservative class distribution",
      reset = FALSE)
 plot(coast, col = "orange", add = TRUE)
 ```
@@ -159,7 +159,7 @@ This function will have a name, `make_model_input_by_month`.  It's a long name, 
 #' @param path the output data path to store this data (be default "model_input")
 #' @param min_obs num this sets a threshold below which we wont try to make a model. (Default is 3)
 #' @return a named two element list of greedy and conservative model inputs - they are tables
-make_model_input_by_month  = function(mon = "Jun",
+make_model_input_by_month  = function(mon = "Aug",
                                       obs = read_observations("Cetorhinus maximus"),
                                       raster = NULL,
                                       species = "Cetorhinus maximus",
@@ -168,6 +168,8 @@ make_model_input_by_month  = function(mon = "Jun",
   # the user *must* provide a raster
   if (is.null(raster)) stop("please provide a raster")
   # filter the obs
+
+  
   obs = obs |>
     filter(month == mon[1])
   

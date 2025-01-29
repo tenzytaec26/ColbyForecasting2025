@@ -19,7 +19,7 @@ We also will need the Brickman mask and the observation data. Note that we are m
 
 ```{r load_obs_mask}
 coast = read_coastline()
-obs = read_observations(scientificname = "Mola mola") |>
+obs = read_observations(scientificname = "Cetorhinus maximus") |>
   filter(month == "Aug")
 db = brickman_database() |>
   filter(scenario == "STATIC", var == "mask")

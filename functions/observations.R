@@ -1,5 +1,5 @@
 read_observations = function(scientificname = "Cetorhinus maximus",
-                             minimum_year = 1970, 
+                             minimum_year = 2000, maximum_year = 2020, 
                              ...){
   
   #' Read raw OBIS data and then filter it
@@ -44,6 +44,10 @@ read_observations = function(scientificname = "Cetorhinus maximus",
   if (!is.null(minimum_year)){
     obs = obs |> 
       filter(year >= minimum_year)
+  }
+  if (!is.null(maximum_year)){
+    obs = obs |> 
+      filter(year <= maximum_year)
   }
   
   obs = obs |> 

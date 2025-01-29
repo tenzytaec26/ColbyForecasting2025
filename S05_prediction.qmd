@@ -213,15 +213,3 @@ plot(forecast_2055_45['.pred'], main = "RCP45 2055 June Labels",
 plot(coast, col = "black", lwd = 2, add = TRUE)
 ```
 
-
-
-
-
-
-
-```{for loop for predictions}
-
-for (month in month.abb){
-  
-}
-```
